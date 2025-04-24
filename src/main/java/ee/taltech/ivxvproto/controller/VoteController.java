@@ -1,7 +1,7 @@
-package ee.taltech.ivxvproto.vote.controller;
+package ee.taltech.ivxvproto.controller;
 
-import ee.taltech.ivxvproto.vote.model.Vote;
-import ee.taltech.ivxvproto.vote.service.VoteService;
+import ee.taltech.ivxvproto.model.vote.Vote;
+import ee.taltech.ivxvproto.service.VoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package ee.taltech.ivxvproto.vote.service;
+package ee.taltech.ivxvproto.service;
 
-import ee.taltech.ivxvproto.vote.model.Vote;
+import ee.taltech.ivxvproto.model.vote.Vote;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

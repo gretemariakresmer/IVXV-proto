@@ -1,4 +1,4 @@
-package ee.taltech.ivxvproto.vote.model;
+package ee.taltech.ivxvproto.model.vote;
 
 import lombok.Builder;
 import lombok.Data;
