@@ -1,10 +1,11 @@
-package ee.taltech.ivxvproto.service;
+package ee.taltech.ivxvproto.service.implementation;
 
 import ee.taltech.ivxvproto.model.dto.PartyGroupDto;
 import ee.taltech.ivxvproto.model.dto.PersonDto;
 import ee.taltech.ivxvproto.model.election.Party;
 import ee.taltech.ivxvproto.repository.PartyRepository;
 import ee.taltech.ivxvproto.repository.PersonRepository;
+import ee.taltech.ivxvproto.service.GetPartiesWithCandidates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
