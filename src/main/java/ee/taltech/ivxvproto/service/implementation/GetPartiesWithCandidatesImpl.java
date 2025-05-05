@@ -7,11 +7,11 @@ import ee.taltech.ivxvproto.repository.PartyRepository;
 import ee.taltech.ivxvproto.repository.PersonRepository;
 import ee.taltech.ivxvproto.service.GetPartiesWithCandidates;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class GetPartiesWithCandidatesImpl implements GetPartiesWithCandidates {
     private final PartyRepository partyRepository;

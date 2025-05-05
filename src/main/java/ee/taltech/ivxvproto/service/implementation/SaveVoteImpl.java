@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.taltech.ivxvproto.config.JsonConfig;
 import ee.taltech.ivxvproto.crypting.Encryptor;
 import ee.taltech.ivxvproto.model.EncryptionPayload;
+import ee.taltech.ivxvproto.model.bulletinboard.BlockDto;
 import ee.taltech.ivxvproto.model.dto.VoteResponseDto;
 import ee.taltech.ivxvproto.model.vote.Vote;
 import ee.taltech.ivxvproto.model.vote.VoteRequest;
 import ee.taltech.ivxvproto.repository.VoteRepository;
+import ee.taltech.ivxvproto.service.BroadcastVote;
 import ee.taltech.ivxvproto.service.GetPartyCodeByPersonId;
 import ee.taltech.ivxvproto.service.SaveVote;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class SaveVoteImpl implements SaveVote {
     private final VoteRepository repository;
     private final Encryptor encryptor;
     private final GetPartyCodeByPersonId getPartyCodeByPersonId;
+    private final BroadcastVote broadcastVote;
 
     private final ObjectMapper mapper = JsonConfig.createMapper();
     private final List<Vote> store = new CopyOnWriteArrayList<>();
@@ -48,6 +51,7 @@ public class SaveVoteImpl implements SaveVote {
                 .build();
 
         repository.save(vote);
+        broadcastVote.execute(BlockDto.toDto(vote));
 
         return VoteResponseDto.of(cipher);
     }
