@@ -27,4 +27,5 @@ public class Vote {
     LocalDateTime creationTime;
 
     String ciphertext;
+    boolean simulated;
 }
