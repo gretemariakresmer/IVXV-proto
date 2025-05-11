@@ -17,3 +17,9 @@ spring:
   liquibase:
     change-log: classpath:/db/changelog-master.yaml
     # contexts, default-schema, etc. as needed
+
+simulate:
+  votes:
+    enabled: true          # ▶ Turns the VoteSimulator bean on
+    initial-delay: 1000    # ▶ 1 second delay before first run
+    rate: 5000             # ▶ run every 5 seconds thereafter
