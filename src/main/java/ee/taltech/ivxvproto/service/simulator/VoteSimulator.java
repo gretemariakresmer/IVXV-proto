@@ -31,11 +31,8 @@ public class VoteSimulator {
         repository.deleteAllSimulatedVotes();
     }
 
-    @Scheduled(
-            initialDelayString = "${simulate.votes.initial-delay:1000}",
-            fixedRateString = "${simulate.votes.rate:5000}"
-    )
-    public void simulate() {
+    @Scheduled(initialDelayString = "${simulate.votes.initial-delay:1000}", fixedRateString = "${simulate.votes.rate:5000}")
+    public void simulate() throws Exception {
         LocalDateTime now = LocalDateTime.now();
         String input = UUID.randomUUID().toString();
         String ciphertext = encryptor.encrypt(input);

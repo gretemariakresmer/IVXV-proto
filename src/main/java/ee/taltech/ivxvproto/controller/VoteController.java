@@ -1,19 +1,12 @@
 package ee.taltech.ivxvproto.controller;
 
 import ee.taltech.ivxvproto.model.bulletinboard.BlockDto;
+import ee.taltech.ivxvproto.model.dto.EncryptPreviewDto;
 import ee.taltech.ivxvproto.model.dto.VoteResponseDto;
-import ee.taltech.ivxvproto.model.vote.Vote;
-import ee.taltech.ivxvproto.model.vote.VoteRequest;
-import ee.taltech.ivxvproto.service.GetVotes;
-import ee.taltech.ivxvproto.service.RegisterVoteStream;
-import ee.taltech.ivxvproto.service.SaveVote;
-import ee.taltech.ivxvproto.service.SearchVotes;
+import ee.taltech.ivxvproto.service.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,10 +19,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VoteController {
 
-    private final SaveVote saveVote;
+    private final ConfirmVote confirmVote;
     private final GetVotes getVotes;
     private final SearchVotes searchVotes;
     private final RegisterVoteStream registerVoteStream;
+    private final PreviewVote previewVote;
 
     @GetMapping
     public List<BlockDto> getVotes() {
@@ -46,14 +40,13 @@ public class VoteController {
         return registerVoteStream.execute();
     }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Vote> getVoteById(@PathVariable Long id) {
-        return null;
+    @PostMapping()
+    public VoteResponseDto saveVote(@RequestParam String previewToken) throws Exception {
+        return confirmVote.execute(previewToken);
     }
 
-    @PostMapping()
-    public VoteResponseDto saveVote(@RequestBody VoteRequest request) throws Exception {
-        return saveVote.execute(request);
+    @PostMapping("/preview")
+    public EncryptPreviewDto preview(@RequestParam long candidate) throws Exception {
+        return previewVote.execute(candidate);
     }
 }

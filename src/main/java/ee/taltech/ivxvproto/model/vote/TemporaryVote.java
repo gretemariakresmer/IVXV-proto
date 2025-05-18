@@ -2,29 +2,25 @@ package ee.taltech.ivxvproto.model.vote;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Vote {
+public class TemporaryVote {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    @GeneratedValue()
+    UUID id;
 
     long candidateId;
-    long generatedNumber;
-    LocalDateTime creationTime;
-
     String ciphertext;
-    boolean simulated;
+    long generatedNumber;
 }
